@@ -37,12 +37,12 @@ public class Brand {
     )
     private String brandName;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "category_id",
-            nullable = true
-    )
-    private Category category;
+//    @ManyToOne
+//    @JoinColumn(
+//            name = "category_id",
+//            nullable = true
+//    )
+//    private Category category;
 
     @OneToMany(
             cascade = CascadeType.ALL
