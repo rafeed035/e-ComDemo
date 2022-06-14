@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -35,14 +34,4 @@ public class Category {
             nullable = false
     )
     private String categoryName;
-
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    private List<Brand>brands;
-
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    private List<Product>productList;
 }

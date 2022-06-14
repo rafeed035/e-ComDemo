@@ -16,11 +16,13 @@ public class BrandController {
         this.brandService = brandService;
     }
 
+    //add new brand
     @PostMapping("/addBrand")
     public Brand saveBrand(@RequestBody Brand brand){
         return brandService.saveBrand(brand);
     }
 
+    //get all the brands
     @GetMapping("/getAllBrands")
     public List<Brand> getAllBrands(){
         return brandService.getAllBrands();

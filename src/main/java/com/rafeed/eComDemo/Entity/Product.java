@@ -27,7 +27,7 @@ public class Product {
             name = "product_id",
             nullable = false
     )
-    private int product_id;
+    private int productId;
 
     @Column(
             name = "product_name",
@@ -41,24 +41,23 @@ public class Product {
     )
     private int unitPrice;
 
-    @ManyToOne
+    @ManyToOne(
+            cascade = CascadeType.ALL
+    )
     @JoinColumn(
             name = "brand_id",
+            referencedColumnName = "brand_id",
             nullable = false
     )
     private Brand brand;
 
-    @ManyToOne
+    @ManyToOne(
+            cascade = CascadeType.ALL
+    )
     @JoinColumn(
             name = "category_id",
-            nullable = true
+            referencedColumnName = "category_id",
+            nullable = false
     )
     private Category category;
-
-    @ManyToOne
-    @JoinColumn(
-            name = "customer_id",
-            nullable = true
-    )
-    private Customer customer;
 }

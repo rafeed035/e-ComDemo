@@ -8,4 +8,8 @@ public interface CategoryService {
     public Category saveCategory(Category category);
 
     public List<Category> getAllCategories();
+
+    Category getCategoryById(int categoryId);
+
+    Category getCategoryByName(String categoryName);
 }

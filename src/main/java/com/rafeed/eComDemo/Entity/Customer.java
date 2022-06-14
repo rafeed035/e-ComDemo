@@ -62,9 +62,4 @@ public class Customer {
             nullable = false
     )
     private String address;
-
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    private List<Product> productList;
 }

@@ -8,6 +8,7 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.PrimitiveIterator;
 
 @Entity
 @Data
@@ -36,16 +37,4 @@ public class Brand {
             nullable = false
     )
     private String brandName;
-
-//    @ManyToOne
-//    @JoinColumn(
-//            name = "category_id",
-//            nullable = true
-//    )
-//    private Category category;
-
-    @OneToMany(
-            cascade = CascadeType.ALL
-    )
-    private List<Product>products;
 }
