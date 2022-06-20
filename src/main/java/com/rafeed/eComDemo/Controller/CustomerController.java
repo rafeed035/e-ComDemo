@@ -2,7 +2,6 @@ package com.rafeed.eComDemo.Controller;
 
 import com.rafeed.eComDemo.Entity.Customer;
 import com.rafeed.eComDemo.Service.CustomerService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
