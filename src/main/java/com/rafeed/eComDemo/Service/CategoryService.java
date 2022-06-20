@@ -12,4 +12,7 @@ public interface CategoryService {
     Category getCategoryById(int categoryId);
 
     Category getCategoryByName(String categoryName);
+
+    List<Category>getCategoriesByName(String categoryName);
+
 }

@@ -36,6 +36,11 @@ public class Product {
     private String productName;
 
     @Column(
+            name = "product_specs"
+    )
+    private String productSpecs;
+
+    @Column(
             name = "unit_price",
             nullable = false
     )

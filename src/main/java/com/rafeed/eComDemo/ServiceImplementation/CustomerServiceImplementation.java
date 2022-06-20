@@ -3,7 +3,6 @@ package com.rafeed.eComDemo.ServiceImplementation;
 import com.rafeed.eComDemo.Entity.Customer;
 import com.rafeed.eComDemo.Repository.CustomerRepository;
 import com.rafeed.eComDemo.Service.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +18,25 @@ public class CustomerServiceImplementation implements CustomerService {
 
     @Override
     public Customer saveCustomer(Customer customer) {
-        return customerRepository.save(customer);
+
+        //check if the customer is already in the customer table
+        Customer customerCheck = customerRepository.getCustomersByPhone(customer.getPhone());
+        if(customerCheck != null){
+            System.out.println("Already exists");
+        }
+        else{
+            customerCheck = customer;
+        }
+        return customerRepository.save(customerCheck);
     }
 
     @Override
     public List<Customer> getAllCustomer() {
-        return customerRepository.getAllCustomers();
+        return customerRepository.findAll();
+    }
+
+    @Override
+    public Customer getCustomerByPhone(String phone) {
+        return customerRepository.getCustomersByPhone(phone);
     }
 }
