@@ -27,4 +27,9 @@ public class BrandController {
     public List<Brand> getAllBrands(){
         return brandService.getAllBrands();
     }
+
+    @GetMapping("/getBrand")
+    public Brand getBrandById(@RequestParam int brandId){
+        return brandService.getBrandById(brandId);
+    }
 }

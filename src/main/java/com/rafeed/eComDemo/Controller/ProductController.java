@@ -27,5 +27,9 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+    @GetMapping("/getProductsByCategory")
+    public List<Product> getProductsByCategory(@RequestParam String categoryName){
+        return productService.getProductByCategory(categoryName);
+    }
 
 }

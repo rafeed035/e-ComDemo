@@ -25,5 +25,8 @@ public class CategoryController {
         return categoryService.getAllCategories();
     }
 
-
+    @GetMapping("/getCategory")
+    public Category getCategoryById(@RequestParam int categoryId){
+        return categoryService.getCategoryById(categoryId);
+    }
 }

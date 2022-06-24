@@ -31,16 +31,18 @@ public class BrandServiceImplementation implements BrandService {
 
         //check if the category already exists in the category table
         String categoryName = brand.getCategory().getCategoryName();
-        Category category = categoryRepository.getCategoryByCategoryName(categoryName);
-        if(category != null){
-            brand.setCategory(category);
+        Category categoryCheck = categoryRepository.getCategoryByCategoryName(categoryName);
+        if(categoryCheck != null){
+            brand.setCategory(categoryCheck);
         }
         else{
-            categoryRepository.save(brand.getCategory());
+            categoryCheck = brand.getCategory();
+            categoryRepository.save(categoryCheck);
+            brand.setCategory(categoryCheck);
         }
 
         //check if the brand already exists in the brand table
-        Brand brandCheck = brandRepository.getBrandByCategory(category);
+        Brand brandCheck = brandRepository.getBrandByCategory(categoryCheck);
         if(brandCheck != null){
             System.out.println("Brand Already exist");
         }

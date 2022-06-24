@@ -29,24 +29,14 @@ public class ProductServiceImplementation implements ProductService {
     @Override
     public Product saveProduct(Product product) {
 
-        //check whether the category is already in the database or not
-        String categoryName = product.getCategory().getCategoryName();
-        Category category = categoryRepository.getCategoryByCategoryName(categoryName);
-
-        if(category != null){
-            product.setCategory(category);
-        }
-        else{
-            product.setCategory(product.getCategory());
-            categoryRepository.save(product.getCategory());
-
-        }
-
         //check whether the brand is already in the database or not
-        Brand brandCheck = brandRepository.getBrandByCategory(product.getCategory());
+        Category category = categoryRepository.getCategoryByCategoryName(product.getBrand().getCategory().getCategoryName());
+        Brand brandCheck = brandRepository.getBrandByCategory(category);
         if (brandCheck != null) {
+            brandCheck.setCategory(category);
             product.setBrand(brandCheck);
         } else {
+            categoryRepository.save(product.getBrand().getCategory());
             brandCheck = product.getBrand();
             brandRepository.save(brandCheck);
         }

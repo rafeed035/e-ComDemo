@@ -55,14 +55,4 @@ public class Product {
             nullable = false
     )
     private Brand brand;
-
-    @ManyToOne(
-            cascade = CascadeType.ALL
-    )
-    @JoinColumn(
-            name = "category_id",
-            referencedColumnName = "category_id",
-            nullable = false
-    )
-    private Category category;
 }
