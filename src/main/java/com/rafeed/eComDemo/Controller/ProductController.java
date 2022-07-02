@@ -32,4 +32,9 @@ public class ProductController {
         return productService.getProductByCategory(categoryName);
     }
 
+    @GetMapping("/getProductById")
+    public Product getProductById(@RequestParam int productId){
+        return productService.getProductById(productId);
+    }
+
 }

@@ -15,14 +15,11 @@ import java.util.List;
 public class BrandServiceImplementation implements BrandService {
 
     private BrandRepository brandRepository;
-    private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
 
     public BrandServiceImplementation(BrandRepository brandRepository,
-                                      ProductRepository productRepository,
                                       CategoryRepository categoryRepository) {
         this.brandRepository = brandRepository;
-        this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
     }
 
@@ -37,19 +34,31 @@ public class BrandServiceImplementation implements BrandService {
         }
         else{
             categoryCheck = brand.getCategory();
-            categoryRepository.save(categoryCheck);
+            categoryRepository.save(brand.getCategory());
             brand.setCategory(categoryCheck);
         }
 
-        //check if the brand already exists in the brand table
-        Brand brandCheck = brandRepository.getBrandByCategory(categoryCheck);
-        if(brandCheck != null){
-            System.out.println("Brand Already exist");
+        //check if the brand with the specific category already exists in the brand table
+        List<Brand> brands = brandRepository.getBrandsByCategory(brand.getCategory());
+        Brand brandCheckByName = brandRepository.getBrandByBrandName(brand.getBrandName());
+        if(brands.size() > 0){
+            if(brandCheckByName != null){
+                Category category = brandCheckByName.getCategory();
+                if(category == brand.getCategory()){
+                    System.out.println("brand already exists");
+                }
+                else{
+                    brandCheckByName = brand;
+                }
+            }
+            else{
+                brandCheckByName = brand;
+            }
         }
         else{
-            brandCheck = brand;
+            brandCheckByName = brand;
         }
-        return brandRepository.save(brandCheck);
+        return brandRepository.save(brandCheckByName);
     }
 
     @Override

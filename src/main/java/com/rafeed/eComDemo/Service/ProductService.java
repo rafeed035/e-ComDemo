@@ -21,4 +21,7 @@ public interface ProductService {
 
     //get product by product name
     Product getProductByName(String productName);
+
+    //get product by product id
+    Product getProductById(int productId);
 }

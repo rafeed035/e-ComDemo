@@ -19,4 +19,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List <Product> getProductByCategory(String categoryName);
 
     Product getProductByProductName(String productName);
+
+    Product getProductByProductId(int productId);
 }

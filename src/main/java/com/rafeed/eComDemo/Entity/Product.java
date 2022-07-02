@@ -46,6 +46,11 @@ public class Product {
     )
     private int unitPrice;
 
+    @Column(
+            name = "product_quantity"
+    )
+    private int productQuantity;
+
     @ManyToOne(
             cascade = CascadeType.ALL
     )

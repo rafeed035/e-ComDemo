@@ -71,4 +71,9 @@ public class ProductServiceImplementation implements ProductService {
     public Product getProductByName(String productName) {
         return productRepository.getProductByProductName(productName);
     }
+
+    @Override
+    public Product getProductById(int productId) {
+        return productRepository.getProductByProductId(productId);
+    }
 }
