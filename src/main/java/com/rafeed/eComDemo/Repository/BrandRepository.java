@@ -15,5 +15,7 @@ public interface BrandRepository extends JpaRepository<Brand, Integer> {
 
     List<Brand> getBrandsByCategory(Category category);
 
+    List<Brand> getBrandsByBrandName(String brandName);
+
     Brand getBrandByCategory(Category category);
 }

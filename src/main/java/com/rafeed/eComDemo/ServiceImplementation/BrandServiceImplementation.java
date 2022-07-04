@@ -40,25 +40,23 @@ public class BrandServiceImplementation implements BrandService {
 
         //check if the brand with the specific category already exists in the brand table
         List<Brand> brands = brandRepository.getBrandsByCategory(brand.getCategory());
-        Brand brandCheckByName = brandRepository.getBrandByBrandName(brand.getBrandName());
+        Brand brandNew = brand;
         if(brands.size() > 0){
-            if(brandCheckByName != null){
-                Category category = brandCheckByName.getCategory();
-                if(category == brand.getCategory()){
-                    System.out.println("brand already exists");
+            for(int i=0; i<brands.size(); i++){
+                if(brands.get(i).getBrandName().equals(brand.getBrandName())){
+                    System.out.println("Brand already exists!");
+                    brandNew = brands.get(i);
+                    break;
                 }
                 else{
-                    brandCheckByName = brand;
+                    brandNew = brand;
                 }
-            }
-            else{
-                brandCheckByName = brand;
             }
         }
         else{
-            brandCheckByName = brand;
+            brandNew = brand;
         }
-        return brandRepository.save(brandCheckByName);
+        return brandRepository.save(brandNew);
     }
 
     @Override
@@ -74,6 +72,11 @@ public class BrandServiceImplementation implements BrandService {
     @Override
     public Brand getBrandByName(String brandName) {
         return brandRepository.getBrandByBrandName(brandName);
+    }
+
+    @Override
+    public List<Brand> getBrandsByName(String brandName) {
+        return brandRepository.getBrandsByBrandName(brandName);
     }
 
     @Override
