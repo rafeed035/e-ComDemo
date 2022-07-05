@@ -31,20 +31,33 @@ public class ProductServiceImplementation implements ProductService {
 
         //check whether the brand is already in the database or not
         Category category = categoryRepository.getCategoryByCategoryName(product.getBrand().getCategory().getCategoryName());
-        Brand brandCheck = brandRepository.getBrandByCategory(category);
-        if (brandCheck != null) {
-            brandCheck.setCategory(category);
-            product.setBrand(brandCheck);
-        } else {
-            categoryRepository.save(product.getBrand().getCategory());
-            brandCheck = product.getBrand();
-            brandRepository.save(brandCheck);
+        List<Brand> brands = brandRepository.getBrandsByCategory(category);
+        Brand brandNew = product.getBrand();
+        if(brands.size() > 0){
+            for(int i=0; i<brands.size(); i++){
+                if(brands.get(i).getBrandName().equals(product.getBrand().getBrandName())){
+                    System.out.println("Brand already exists!");
+                    brandNew.setCategory(category);
+                    brandNew = brands.get(i);
+                    product.setBrand(brandNew);
+                    break;
+                }
+                else{
+                    categoryRepository.save(product.getBrand().getCategory());
+                    brandNew = product.getBrand();
+                    brandRepository.save(brandNew);
+                }
+            }
+        }
+        else{
+            brandNew = product.getBrand();
+            brandRepository.save(brandNew);
         }
 
         //check if the product is already there in the product table
         Product productCheck = productRepository.getProductByProductName(product.getProductName());
         if(productCheck != null){
-            System.out.println("Already exists");
+            System.out.println("Product already exists");
         }
         else{
             productCheck = product;

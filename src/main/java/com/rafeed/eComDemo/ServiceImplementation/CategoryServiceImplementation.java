@@ -35,7 +35,7 @@ public class CategoryServiceImplementation implements CategoryService {
         String categoryName = category.getCategoryName();
         Category categoryCheck = categoryRepository.getCategoryByCategoryName(categoryName);
         if(categoryCheck != null){
-            System.out.println("Already exists");
+            System.out.println("Category already exists");
         }
         else{
             categoryCheck = category;
