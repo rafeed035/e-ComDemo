@@ -10,4 +10,6 @@ public interface CustomerService {
     public List<Customer> getAllCustomer();
 
     Customer getCustomerByPhone(String phone);
+
+    Customer getCustomerByCustomerId(int customerId);
 }

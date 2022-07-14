@@ -39,4 +39,9 @@ public class CustomerServiceImplementation implements CustomerService {
     public Customer getCustomerByPhone(String phone) {
         return customerRepository.getCustomersByPhone(phone);
     }
+
+    @Override
+    public Customer getCustomerByCustomerId(int customerId) {
+        return customerRepository.getCustomersByCustomerId(customerId);
+    }
 }

@@ -16,21 +16,13 @@ import java.util.List;
 public class CategoryServiceImplementation implements CategoryService {
 
     private CategoryRepository categoryRepository;
-    private BrandRepository brandRepository;
-    private ProductRepository productRepository;
 
-    public CategoryServiceImplementation(CategoryRepository categoryRepository,
-                                         BrandRepository brandRepository,
-                                         ProductRepository productRepository
-                                         ) {
+    public CategoryServiceImplementation(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-        this.brandRepository = brandRepository;
-        this.productRepository = productRepository;
     }
 
     @Override
     public Category saveCategory(Category category) {
-
         //check if the category already exists in the category table
         String categoryName = category.getCategoryName();
         Category categoryCheck = categoryRepository.getCategoryByCategoryName(categoryName);
