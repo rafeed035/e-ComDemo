@@ -1,7 +1,6 @@
 package com.rafeed.eComDemo.Repository;
 
 import com.rafeed.eComDemo.Entity.Cart;
-import com.rafeed.eComDemo.Entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
